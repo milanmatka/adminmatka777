@@ -33,7 +33,7 @@ const Router = [
     path: '/',
     element: <FullLayout />,
     children: [
-      { path: '/', element: <Navigate to="/auth/login" /> },
+      { path: '/', element: <Navigate to="/dashboard" /> },
       { path: '/dashboard', exact: true, element: <Dashboard /> },
 
     
@@ -70,3 +70,4 @@ const Router = [
 ];
 
 export default Router;
+export { FullLayout, BlankLayout, Dashboard, TypographyPage, Shadow, Galidesawer, Galidesaweresult, Error, Register, Login };
