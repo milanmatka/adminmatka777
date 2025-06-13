@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
-import svgr from 'vite-plugin-svgr'; // Use the Vite-compatible version
+import svgr from 'vite-plugin-svgr';
 
 export default defineConfig({
   resolve: {
@@ -10,10 +10,12 @@ export default defineConfig({
     },
   },
   plugins: [
-    svgr({
-      exportAsDefault: true,
-    }),
     react(),
+    svgr({ exportAsDefault: true }),
   ],
-  base: './', // This ensures correct routing in Vercel deployment
+  esbuild: {
+    loader: 'jsx',
+    include: /src\/.*\.js$/, // Include .js files as JSX
+  },
+  base: './',
 });
