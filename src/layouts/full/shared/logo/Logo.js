@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-import LogoDark1 from "@/public/Milan.png";
-import { styled } from "@mui/material";
+import { styled, Typography } from "@mui/material";
 
 const LinkStyled = styled(Link)(() => ({
   height: "70px",
@@ -19,7 +18,9 @@ const Logo = () => {
         alignItems: "center",
       }}
     >
-      <img src={LogoDark1} alt="Logo" style={{ maxHeight: '100%', maxWidth: '100%' }} />
+      <Typography variant="h4" color="primary" fontWeight="bold">
+        AdminMatka
+      </Typography>
     </LinkStyled>
   );
 };
