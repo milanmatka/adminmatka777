@@ -10,8 +10,10 @@ const Dashboard = Loadable(lazy(() => import('../views/dashboard/Dashboard')));
 const Error = Loadable(lazy(() => import('../views/authentication/Error')));
 const Register = Loadable(lazy(() => import('../views/authentication/Register')));
 const Login = Loadable(lazy(() => import('../views/authentication/Login')));
-
-// Other components...
+const TypographyPage = Loadable(lazy(() => import('../views/utilities/TypographyPage')));
+const Shadow = Loadable(lazy(() => import('../views/utilities/Shadow')));
+const Galidesawer = Loadable(lazy(() => import('../views/utilities/galidesawer')));
+const Galidesaweresult = Loadable(lazy(() => import('../views/utilities/Galidesaweresult')));
 
 const Router = [
   {
@@ -20,7 +22,10 @@ const Router = [
     children: [
       { path: '/', element: <Navigate to="/dashboard" /> },
       { path: '/dashboard', element: <ProtectedRoute><Dashboard /></ProtectedRoute> },
-      // Other protected routes...
+      { path: '/ui/typography', element: <ProtectedRoute><TypographyPage /></ProtectedRoute> },
+      { path: '/ui/shadow', element: <ProtectedRoute><Shadow /></ProtectedRoute> },
+      { path: '/galidesawer', element: <ProtectedRoute><Galidesawer /></ProtectedRoute> },
+      { path: '/galidesaweresult', element: <ProtectedRoute><Galidesaweresult /></ProtectedRoute> },
       { path: '*', element: <Navigate to="/auth/404" /> },
     ],
   },
@@ -36,4 +41,8 @@ const Router = [
   },
 ];
 
+export default Router;
+
 export { FullLayout, BlankLayout, Dashboard, TypographyPage, Shadow, Galidesawer, Galidesaweresult, Error, Register, Login };
+export { ProtectedRoute };
+export { Loadable };
