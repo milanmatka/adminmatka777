@@ -8,7 +8,7 @@ const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
 const BlankLayout = Loadable(lazy(() => import('../layouts/blank/BlankLayout')));
 
 // Pages
-const Dashboard = Loadable(lazy(() => import('../views/dashboard/Dashboard')));
+const Dashboard = Loadable(lazy(() => import('../views/dashboard/Dashboard.js')));
 const Error = Loadable(lazy(() => import('../views/authentication/Error')));
 const Register = Loadable(lazy(() => import('../views/authentication/Register')));
 const Login = Loadable(lazy(() => import('../views/authentication/Login')));
