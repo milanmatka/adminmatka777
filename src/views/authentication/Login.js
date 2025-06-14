@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import {
   Box,
   Typography,
@@ -9,7 +8,6 @@ import {
 } from '@mui/material';
 
 function Login() {
-  const navigate = useNavigate();
   const [error, setError] = useState('');
   
   const handleLogin = (e) => {
@@ -21,7 +19,7 @@ function Login() {
       // Store authentication state in localStorage
       localStorage.setItem('isAuthenticated', 'true');
       
-      // Use window.location for a full page refresh to ensure proper loading
+      // Use window.location for a full page refresh
       window.location.href = '/dashboard';
     } else {
       setError('Invalid credentials');

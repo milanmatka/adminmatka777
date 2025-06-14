@@ -1,8 +1,8 @@
 import { lazy } from 'react';
 import { Navigate } from 'react-router-dom';
 import Loadable from '../layouts/Loadable';
-import ProtectedRoute from '../components/ProtectedRoute';
 
+// Lazy load components
 const FullLayout = Loadable(lazy(() => import('../layouts/full/FullLayout')));
 const BlankLayout = Loadable(lazy(() => import('../layouts/blank/BlankLayout')));
 
@@ -14,6 +14,12 @@ const TypographyPage = Loadable(lazy(() => import('../views/utilities/Typography
 const Shadow = Loadable(lazy(() => import('../views/utilities/Shadow')));
 const Galidesawer = Loadable(lazy(() => import('../views/utilities/galidesawer')));
 const Galidesaweresult = Loadable(lazy(() => import('../views/utilities/Galidesaweresult')));
+
+// Create a simple ProtectedRoute component if it doesn't exist
+const ProtectedRoute = ({ children }) => {
+  const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+  return isAuthenticated ? children : <Navigate to="/auth/login" />;
+};
 
 const Router = [
   {
@@ -44,5 +50,3 @@ const Router = [
 export default Router;
 
 export { FullLayout, BlankLayout, Dashboard, TypographyPage, Shadow, Galidesawer, Galidesaweresult, Error, Register, Login };
-export { ProtectedRoute };
-export { Loadable };
