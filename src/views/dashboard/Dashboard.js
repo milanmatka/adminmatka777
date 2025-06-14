@@ -7,11 +7,12 @@ import SalesOverview from './components/SalesOverview';
 import YearlyBreakup from './components/YearlyBreakup';
 import RecentTransactions from './components/RecentTransactions';
 import ProductPerformance from './components/ProductPerformance';
-import Blog from './components/Blog';
 import MonthlyEarnings from './components/MonthlyEarnings';
 
-
 const Dashboard = () => {
+  // Log to verify component is rendering
+  console.log('Dashboard component rendering');
+  
   return (
     <PageContainer title="Dashboard" description="this is Dashboard">
       <Box>
@@ -34,9 +35,6 @@ const Dashboard = () => {
           </Grid>
           <Grid item xs={12} lg={8}>
             <ProductPerformance />
-          </Grid>
-          <Grid item xs={12}>
-            {/* <Blog /> */}
           </Grid>
         </Grid>
       </Box>

@@ -1,19 +1,24 @@
-import { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { Box, CircularProgress } from '@mui/material';
 
 const ProtectedRoute = ({ children }) => {
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   
   useEffect(() => {
-    // Check authentication status
-    const authStatus = localStorage.getItem('isAuthenticated') === 'true';
-    setIsAuthenticated(authStatus);
-    setLoading(false);
+    // Check authentication on client-side only
+    const checkAuth = () => {
+      const auth = localStorage.getItem('isAuthenticated') === 'true';
+      setIsAuthenticated(auth);
+      setIsLoading(false);
+    };
+    
+    checkAuth();
   }, []);
   
-  if (loading) {
+  // Show loading while checking authentication
+  if (isLoading) {
     return (
       <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
         <CircularProgress />
@@ -21,30 +26,15 @@ const ProtectedRoute = ({ children }) => {
     );
   }
   
+  // Redirect to login if not authenticated
   if (!isAuthenticated) {
-    // Redirect to login if not authenticated
-    return <Navigate to="/auth/login" />;
+    return <Navigate to="/auth/login" replace />;
   }
   
+  // Render children if authenticated
   return children;
 };
 
 export default ProtectedRoute;
-import React from 'react';
-import { Navigate } from 'react-router-dom';
 
-const ProtectedRoute = ({ children }) => {
-  // Check if user is authenticated
-  const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
-  
-  // If not authenticated, redirect to login
-  if (!isAuthenticated) {
-    return <Navigate to="/auth/login" />;
-  }
-  
-  // If authenticated, render the children
-  return children;
-};
-
-export default ProtectedRoute;
 
