@@ -21,8 +21,7 @@ const TypographyPage = Loadable(lazy(() => import('../views/utilities/Typography
 const Shadow = Loadable(lazy(() => import('../views/utilities/Shadow')));
 const Galidesawer = Loadable(lazy(() => import('../views/utilities/galidesawer')));
 const Galidesaweresult = Loadable(lazy(() => import('../views/utilities/Galidesaweresult')));
-
-
+import ProtectedRoute from '../components/ProtectedRoute';
 
 const Error = Loadable(lazy(() => import('../views/authentication/Error')));
 const Register = Loadable(lazy(() => import('../views/authentication/Register')));
@@ -34,10 +33,12 @@ const Router = [
     element: <FullLayout />,
     children: [
       { path: '/', element: <Navigate to="/dashboard" /> },
-      { path: '/dashboard', exact: true, element: <Dashboard /> },
-
-    
-      { path: '/ui/typography', exact: true, element: <TypographyPage /> },
+      { 
+        path: '/dashboard', 
+        exact: true, 
+        element: <ProtectedRoute><Dashboard /></ProtectedRoute> 
+      },
+      { path: '/ui/typography', exact: true, element: <ProtectedRoute><TypographyPage /></ProtectedRoute> },
       { path: '/ui/shadow', exact: true, element: <Shadow /> },
       { path: '/Userdetails', exact: true, element: <Userdetails /> },
       { path: '/Home-image', exact: true, element: <Homedp /> },

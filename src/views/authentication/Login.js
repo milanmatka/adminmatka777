@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   Box,
   Typography,
@@ -9,88 +9,36 @@ import {
   Checkbox,
   TextField
 } from '@mui/material';
-//use navigate
-import { useNavigate } from 'react-router-dom';
 
 function Login() {
   const navigate = useNavigate();
+  
   const handleLogin = (e) => {
     e.preventDefault();
     const username = e.target.username.value;
     const password = e.target.password.value;
 
     if (username === 'matkaadmin777' && password === 'matkaadmin777') {
+      // Store authentication state in localStorage
+      localStorage.setItem('isAuthenticated', 'true');
       alert('Login successful');
-      // Redirect to dashboard or perform any other action
+      // Use absolute path for navigation
       navigate('/dashboard');
-
     } else {
       alert('Invalid credentials');
     }
   };
-
+  
+  // Add form with onSubmit handler
   return (
-    <Box sx={{ maxWidth: 400, mx: 'auto', mt: 10, p: 3, boxShadow: 3, borderRadius: 2 }}>
-      <Typography variant="h5" fontWeight={600} mb={3}>
-        Login
-      </Typography>
-      <form onSubmit={handleLogin} noValidate>
-        <Stack spacing={3}>
-          <Box>
-            <Typography
-              variant="subtitle1"
-              fontWeight={600}
-              component="label"
-              htmlFor="username"
-              mb="5px"
-              display="block"
-            >
-              Username
-            </Typography>
-            <TextField id="username" name="username" variant="outlined" fullWidth />
-          </Box>
-          <Box>
-            <Typography
-              variant="subtitle1"
-              fontWeight={600}
-              component="label"
-              htmlFor="password"
-              mb="5px"
-              display="block"
-            >
-              Password
-            </Typography>
-            <TextField id="password" name="password" type="password" variant="outlined" fullWidth />
-          </Box>
-          <Stack justifyContent="space-between" direction="row" alignItems="center">
-            <FormGroup>
-              <FormControlLabel
-                control={<Checkbox defaultChecked />}
-                label="Remember this device"
-              />
-            </FormGroup>
-            {/* <Typography
-              component={Link}
-              to="/forgot-password"
-              fontWeight="500"
-              sx={{
-                textDecoration: 'none',
-                color: 'primary.main',
-              }}
-            >
-              Forgot Password?
-            </Typography> */}
-          </Stack>
-          <Button
-            color="primary"
-            variant="contained"
-            size="large"
-            fullWidth
-            type="submit"
-          >
-            Sign In
-          </Button>
-        </Stack>
+    <Box>
+      <form onSubmit={handleLogin}>
+        {/* Your form fields */}
+        <TextField id="username" name="username" label="Username" fullWidth margin="normal" />
+        <TextField id="password" name="password" type="password" label="Password" fullWidth margin="normal" />
+        <Button type="submit" variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
+          Login
+        </Button>
       </form>
     </Box>
   );
